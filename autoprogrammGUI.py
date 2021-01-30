@@ -91,7 +91,7 @@ class AutoGUI():
         self.hauptfenster.mainloop()
 
     def ladeAutos(self): # JEK: Renamed um es klarer zu machen.
-        self.AutoAnsichtTabelle.set([str(e) for e in self.controller.Bestand()])
+        self.AutoAnsichtTabelle.set([str(e) for e in self.controller.Bestand()]) # JEK: Hier muss die Umformatierung stattfinden, von Objekt zu dem string der in der liste gezeigt werden soll.
         
     def AlleWaehlen(self):
         #self.controller.ZeigeBestandZurAnsicht()  # JEK: Nicht mehr notwendig.
@@ -100,15 +100,15 @@ class AutoGUI():
         print("befehl komplett ausgefuert")
         
     def ElektroWaehlen(self):
-        self.controller.ZeigeBestandZurAnsicht()          
+        #self.controller.ZeigeBestandZurAnsicht()          
         self.ladeAutos()
         
     def BenzinWaehlen(self):
-        self.controller.ZeigeBestandZurAnsicht()          
+        #self.controller.ZeigeBestandZurAnsicht()          
         self.ladeAutos()
         
     def DieselWaehlen(self):
-        self.controller.ZeigeBestandZurAnsicht()          
+        #self.controller.ZeigeBestandZurAnsicht()          
         self.ladeAutos()
                 
     # def loescheAuto(self):
