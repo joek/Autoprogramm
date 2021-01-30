@@ -16,16 +16,16 @@ class Auto():
         Auto.MaxAutoID=Auto.MaxAutoID+1
         self.autoID=Auto.MaxAutoID+1
         #self.aa=Elektro("Elektro","mm", 100000,29999,970, 2020) 
-        def __str__(self):
-            return  "AutoID: " +str(self.autoID) \
-                + ", Marke: " + str(self.marke) \
-                + ", Kilmoterstand:" +str(self.kilometer)\
-                + ", Neupreis:" + str(self.neupreis) \
-                + ", Baujahr:" + str(self.baujahr) \
-                + ", AutoID:" + str(self.autoID) \
-                + ", Ladezyklen: " + str(self.ladeZyklen) \
-                + ", Preis: "+ str(int(self.neupreis*(0.4*(max(0,(1000-self.ladeZyklen))/1000)**(2/3)+0.3*(max(0,(20-(int(datetime.today().strftime('%Y'))-int(self.baujahr)))/20))**2+0.3*(max(0,(300000-self.kilometer))/300000)**0.5)))  \
-                
+    def __str__(self):
+        return  "AutoID: " +str(self.autoID) \
+            + ", Marke: " + str(self.marke) \
+            + ", Kilmoterstand:" +str(self.kilometer)\
+            + ", Neupreis:" + str(self.neupreis) \
+            + ", Baujahr:" + str(self.baujahr) \
+            + ", AutoID:" + str(self.autoID) \
+            + ", Ladezyklen: " + str(self.ladeZyklen) \
+            + ", Preis: "+ str(int(self.neupreis*(0.4*(max(0,(1000-self.ladeZyklen))/1000)**(2/3)+0.3*(max(0,(20-(int(datetime.today().strftime('%Y'))-int(self.baujahr)))/20))**2+0.3*(max(0,(300000-self.kilometer))/300000)**0.5)))  \
+            
 class Elektro(Auto):
     ladeZyklen=1 
     # ea=Elektro(abc,10000,1970,20000,100,e)
@@ -48,14 +48,14 @@ class Hilfsklasse():
      aa=Auto("Elektro","mm", 100000,29999,970, 2020)
      def __init__ (self,ao):
          self.aa=ao
-     # def __str__(self):
-     #    return  "AutoID: " +str(self.autoID) \
-     #        + ", Marke: " + str(self.marke) \
-     #        + ", Kilmoterstand:" +str(self.kilometer)\
-     #        + ", Neupreis:" + str(self.neupreis) \
-     #        + ", Baujahr:" + str(self.baujahr) \
-     #        + ", AutoID:" + str(self.autoID) \
-     #        + ", Ladezyklen: " + str(self.ladeZyklen) \
+     def __str__(self):
+        return  "AutoID: " +str(self.aa.autoID) \
+            + ", Marke: " + str(self.aa.marke) \
+            + ", Kilmoterstand:" +str(self.aa.kilometer)\
+            + ", Neupreis:" + str(self.aa.neupreis) \
+            + ", Baujahr:" + str(self.aa.baujahr) \
+            + ", AutoID:" + str(self.aa.autoID) \
+            + ", Ladezyklen: " + str(self.aa.ladeZyklen) \
         
          
 class Bestand():     
@@ -64,15 +64,15 @@ class Bestand():
         #self.aa=auto("Elektro","mm", 100000,29999,970, 2020)             
     def Autohinzufuegen(self,ao):#a,m,k,np,lz,bj):#auto=Auto(a,Ibd)
         print("Modell hinzufuegen funktion aufgerufen")
-        self.bestandListe.append(Hilfsklasse(ao))#a,m,k,np,lz,bj))   
+        self.bestandListe.append(Hilfsklasse(ao))#a,m,k,np,lz,bj))   # JEK: Wozu hier die hilfsklasse?
         print("Modell hinzufuegen funktion ausgeführt")
     def loeschenAus(self,t):
        self.bestandListe.remove(t)
-    def zeigeBestand (self):
+    def zeigeBestand (self):    
         print("zeig Bestand befehl in modell aufgerufen")
         print(self.bestandListe,"XX")
         return[ e for e in self.bestandListe ]
-        print("zeig bestand im modell ausgeführt")
+        print("zeig bestand im modell ausgeführt") # JEK: Das wird nie ausgeführt, da es nach dem return steht.
     def zeigeBestandElektro (self):
         return[i for i in self.bestandListe if a==elektro]
     def printAuto(self,an):

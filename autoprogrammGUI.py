@@ -16,8 +16,10 @@ class AutoProgrammController():
         print("controller aufgerufen")
         self.modellBestand.Autohinzufuegen(Auto(str(a),str(m),int(k),int(np),int(lz),int(bj)))
         print("hinzufuegen an modell weitergeleitet")
-           
-    def ZeigeBestandZurAnsicht(self):
+
+    def Bestand(self):
+        return self.modellBestand.zeigeBestand()    
+    def ZeigeBestandZurAnsicht(self): # JEK: Diese Funktion macht keinen sinn. 
         print("controller aufgerufen")
         self.BestandAnsicht = self.modellBestand.zeigeBestand()
         print("Controler ausgeführt")
@@ -65,6 +67,8 @@ class AutoGUI():
             row=2,
             columnspan=4,
             sticky=(N,S,E,W))
+        # JEK: Tabelle initial laden
+        self.ladeAutos()
 
         self.hinzufuegenButton = ttk.Button(
             self.hauptrahmen,
@@ -72,11 +76,11 @@ class AutoGUI():
             command=self.NeuesAuto)
         self.hinzufuegenButton.grid(column=0,row=3)
 
-        self.loeschenButton = ttk.Button(
-            self.hauptrahmen,
-            text="Loeschen",
-            command=self.loescheAuto)
-        self.loeschenButton.grid(column=1,row=3)
+        # self.loeschenButton = ttk.Button(
+        #     self.hauptrahmen,
+        #     text="Loeschen",
+        #     command=self.loescheAuto)
+        # self.loeschenButton.grid(column=1,row=3)
 
         self.beendenButton = ttk.Button(
             self.hauptrahmen,
@@ -86,32 +90,31 @@ class AutoGUI():
 
         self.hauptfenster.mainloop()
 
-    def erneuereAnsicht(self):
-        self.AutoAnsichtTabelle.set(
-            self.controller.BestandAnsicht)
+    def ladeAutos(self): # JEK: Renamed um es klarer zu machen.
+        self.AutoAnsichtTabelle.set([str(e) for e in self.controller.Bestand()])
         
     def AlleWaehlen(self):
-        self.controller.ZeigeBestandZurAnsicht() 
+        #self.controller.ZeigeBestandZurAnsicht()  # JEK: Nicht mehr notwendig.
         print("zeige bestand im controller wird aufgerufen")         
-        self.erneuereAnsicht()
+        self.ladeAutos()
         print("befehl komplett ausgefuert")
         
     def ElektroWaehlen(self):
         self.controller.ZeigeBestandZurAnsicht()          
-        self.erneuereAnsicht()
+        self.ladeAutos()
         
     def BenzinWaehlen(self):
         self.controller.ZeigeBestandZurAnsicht()          
-        self.erneuereAnsicht()
+        self.ladeAutos()
         
     def DieselWaehlen(self):
         self.controller.ZeigeBestandZurAnsicht()          
-        self.erneuereAnsicht()
+        self.ladeAutos()
                 
-    def loescheAuto(self):
-        self.controller.entferneAuto(
-            self.AutoAnsichtTabelle.curselection()[0])
-        self.erneuereAnsicht()
+    # def loescheAuto(self):
+    #     self.controller.entferneAuto(
+    #         self.AutoAnsichtTabelle.curselection()[0])
+    #     self.erneuereAnsicht()
                       
     def NeuesAuto(self):
         addFenster = Tk()
@@ -185,6 +188,7 @@ class AutoGUI():
     def addAuto(self,a,m,k,np,lz,bj,fenster):
         print("eingabe fenster ausgelesen")
         self.controller.AutoHinzufuegen(a,m,k,np,lz,bj)
+        self.ladeAutos() # JEK: Damit das auch gleich auf der liste ist.
         print("erzeugt")
         #self.AlleWaehlen()
         fenster.destroy()
