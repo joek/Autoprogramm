@@ -88,7 +88,7 @@ class AutoGUI():
 
     def erneuereAnsicht(self):
         self.AutoAnsichtTabelle.set(
-            self.controller.ZeigeBestandZurAnsicht)
+            self.controller.BestandAnsicht)
         
     def AlleWaehlen(self):
         self.controller.ZeigeBestandZurAnsicht() 

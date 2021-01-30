@@ -48,8 +48,14 @@ class Hilfsklasse():
      aa=Auto("Elektro","mm", 100000,29999,970, 2020)
      def __init__ (self,ao):
          self.aa=ao
-     def __str__(self):
-         return str(self.aa)
+     # def __str__(self):
+     #    return  "AutoID: " +str(self.autoID) \
+     #        + ", Marke: " + str(self.marke) \
+     #        + ", Kilmoterstand:" +str(self.kilometer)\
+     #        + ", Neupreis:" + str(self.neupreis) \
+     #        + ", Baujahr:" + str(self.baujahr) \
+     #        + ", AutoID:" + str(self.autoID) \
+     #        + ", Ladezyklen: " + str(self.ladeZyklen) \
         
          
 class Bestand():     
